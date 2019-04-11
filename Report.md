@@ -19,19 +19,23 @@ Machine translation is a popular topic in research. This work utilizes deep neur
 There are 4 basic type of architectures. In this project, all 4 types are implemented. Furthurmore, the combinations of these 4 types are also implemented.
 
 * Model 1: RNN
+
 ![Model 1][model_1_rnn]
 
 * Model 2: Embedding
+
 Adding embedding layer after input.
 
 ![Model 2][model_2_rnn_embed]
 
 * Model 3: Bidirectional RNN
+
 One restriction of a RNN is that it can't see the future input, only the past. This is where bidirectional recurrent neural networks come in. They are able to see the future data.
 
 ![Model 3][model_3_bi_rnn]
 
 * Model 4: Encoder-Decoder
+
 This model is made up of an encoder and decoder. The encoder creates a matrix representation of the sentence. The decoder takes this matrix as input and predicts the translation as output.
 
 ![Model 4][model_4_encoder_decoder]
