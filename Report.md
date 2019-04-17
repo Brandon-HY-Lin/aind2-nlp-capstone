@@ -6,6 +6,7 @@
 
 [model_4_encoder_decoder]: https://github.com/Brandon-HY-Lin/aind2-nlp-capstone/blob/master/images/encoder_decoder.png "Model 4: Encoder-Decoder"
 
+# Project: Machine Translation
 
 # Abstract
 This work adopts 2 Bidirectional GRU and 1 fully-connected layer to translation English sentence to French sentence. The dataset is a subset of [WMT](http://www.statmt.org/). The experiment shows that the validation accuracy is 97.2%.
