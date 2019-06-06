@@ -83,3 +83,18 @@ Implement attention models:
 		* layer: 1
 		* input size: 256
 		* output size: 344
+		
+		
+#### Key APIs
+* Tokenize: keras.preprocessing.text.Tokenizer().fit_on_texts(text).texts_to_sequences(text)
+* Dictionary: keras.preprocessing.text.Tokenizer().fit_on_texts(text).texts_to_sequences(text).word_index
+* Padding: keras.preprocessing.sequence.pad_sequences(sequences, maxlen, padding='post')
+* Keras:
+	* keras.layers.Input(input_size)
+	* keras.layers.Embedding(input_dim, output_dim, input_length)
+	* keras.layers.GRU(units=hidden_size, return_sequences=True)
+	* keras.layers.TimeDistributed()
+	* keras.layers.RepeatVector()  # for encoder-decoder architecture
+	* keras.layers.Dense()
+	* keras.models.Model(inputs, outputs)
+	
