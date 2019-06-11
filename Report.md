@@ -23,11 +23,24 @@ There are 4 basic type of architectures. In this project, all 4 types are implem
 
 ![Model 1][model_1_rnn]
 
-* Model 2: Embedding
+code snippet:
+```
+x_rnn = keras.layers.GRU(units=hidden_size, return_sequences=True)(x)
+y = keras.layers.TimeDistributed(keras.layers.Dense(output_size, activation='softmax'))(x_rnn)
+```
+
+- Model 2: Embedding
 
 Adding embedding layer after input.
 
 ![Model 2][model_2_rnn_embed]
+
+code snippet:
+```
+x_embed = keras.layers.embeddings.Embedding(input_dim=input_size, output_dim=embed_size, input_length=sequence_length)(x)
+x_rnn = keras.layers.GRU(units=hidden_size, return_sequences=False)(x_embed)
+y = keras.layers.TimeDistributed(keras.layers.Dense(output_size, activation='softmax'))(x_rnn)
+```
 
 * Model 3: Bidirectional RNN
 
@@ -35,12 +48,30 @@ One restriction of a RNN is that it can't see the future input, only the past. T
 
 ![Model 3][model_3_bi_rnn]
 
+code snippet:
+```
+x_embed = keras.layers.embeddings.Embedding(input_dim=input_size, output_dim=embed_size, input_length=sequence_length)(x)
+x_rnn = keras.layers.Bidirectional(keras.layers.GRU(units=hidden_size, return_sequences=True))(x_embed)
+y = keras.layers.TimeDistributed(keras.layers.Dense(output_size, activation='softmax'))(x_rnn)
+```
+
 * Model 4: Encoder-Decoder
 
 This model is made up of an encoder and decoder. The encoder creates a matrix representation of the sentence. The decoder takes this matrix as input and predicts the translation as output.
 
 ![Model 4][model_4_encoder_decoder]
 
+
+code snippet:
+```
+x_embed = keras.layers.embeddings.Embedding(input_dim=input_size, output_dim=embed_size, input_length=sequence_length)(x)
+x_rnn_encoder = keras.layers.GRU(units=hidden_size, return_sequences=False)(x_bembed)
+
+x_rep = keras.layers.RepeatVector(sequence_length)(x_rnn_encoder)
+
+x_rnn_decoder = keras.layers.GRU(units=hidden_size, return_sequences=True)(x_rep)
+y = keras.layers.TimeDistributed(keras.layers.Dense(output_size, activation='softmax'))(x_rnn_decoder)
+```
 
 # Results
 The results are shown in the following table. The best result is 2 bidirectional GRU + 1 fully-connected layer as shown in the last row. The validation accuracy is 0.9726.
